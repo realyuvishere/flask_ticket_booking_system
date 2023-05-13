@@ -1,0 +1,33 @@
+{% extends '_base.html' %}
+{% block body %}
+<div class="gutter-banner"></div>
+<div class="container-fluid py-3">
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <div class="card-header px-4 py-3">
+                    <h3 class="m-0">Profile</h3>
+                </div>
+                <div class="card-body">
+                    <p>Name: {{ user.name}}</p>
+                    <p>Email: {{ user.email}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <h3 class="my-5">Your tickets</h3>
+    <div class="row">
+        {% for ticket in tickets %}
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <p><b>Ticket code</b>: {{ ticket.code }}</p>
+                    <p><b>Booked on</b>: {{ showTime(ticket.bookingTime//10**9).strftime('%dth %B %Y (%H:%M IST)') }}</p>
+                    <a class="btn btn-outline-success" href="{{ url_for('show_ticket', code=ticket.code) }}">View details</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends '_base.html' %}
+{% block body %}
+<div class="gutter-banner"></div>
+<div class="container-fluid">
+    <h1>Show details</h1>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card my-3 mx-auto">
+                <div class="card-body">
+                    <h4>{{ event.name }}</h4>
+                    <div><b>Tags</b>: {% for tag in event.tags.split(',') %}<span class="badge text-bg-info">{{ tag }}</span> {% endfor %}</div>
+                    <div>{{ event.description }}</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card my-3 mx-auto">
+                        <div class="card-header">
+                            <h3>Venue</h3>
+                        </div>
+                        <div class="card-body">
+                            <h4>{{ venue.name }}</h4>
+                            <div><b>Located at</b> {{ venue.location }}</div>
+                            <div>{{ venue.capacity - occupied_seats }} seats</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card my-3 mx-auto">
+                        <div class="card-header">
+                            <h3>Show</h3>
+                        </div>
+                        <div class="card-body">
+                            <h4>{{ show.timing }} IST</h4>
+                            <div>&#x20B9; {{ show.price }} / per head</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% if ((venue.capacity - occupied_seats > 0) and show.isActive == 1) %}
+            <div class="card border-success my-3">
+                <div class="card-body text-success">
+                    <h5 class="card-title">Booking Available</h5>
+                    <p class="card-text">Book yours now</p>
+                </div>
+            </div>
+            {% else %}
+            <div class="card border-danger my-3">
+                <div class="card-body text-danger">
+                    <h5 class="card-title">Booking Unavailable</h5>
+                    <p class="card-text">Check back later</p>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    {% if ((venue.capacity - occupied_seats > 0) and show.isActive == 1) %}
+    <a href="{{ url_for('book_tickets', id=show.id) }}" class="btn btn-outline-primary mx-auto d-block">Book tickets</a>
+    {% endif %}
+</div>
+{% endblock %}

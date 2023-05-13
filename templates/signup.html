@@ -1,0 +1,31 @@
+{% extends '_base.html' %}
+{% block body %}
+<div class="d-flex justify-content-center align-items-center vh-100">
+    <div>
+        <h1 class="text-center my-3">Welcome to TicketShow</h1>
+        <div class="card text-center">
+            <div class="card-body">
+                <form method="POST" action="{{ url_for('user_signup') }}">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="name" name="name" value="{{ data['name'] if data else '' }}" placeholder="Name">
+                        <label for="name">Name</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="email" class="form-control" id="email" name="email" value="{{ data['email'] if data else '' }}" placeholder="Email">
+                        <label for="email">Email address</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="tel" class="form-control" id="phone" name="phone" value="{{ data['phone'] if data else '' }}" placeholder="Phone number" maxlength="10" minlength="10">
+                        <label for="phone">Phone number</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="password" class="form-control" id="password" value="{{ data['password'] if data else '' }}" name="password" placeholder="Password">
+                        <label for="password">Password</label>
+                    </div>
+                    <button type="submit" class="btn btn-outline-primary">Sign up</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

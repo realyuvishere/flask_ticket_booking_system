@@ -1,0 +1,18 @@
+{% extends '_base.html' %}
+{% block body %}
+<div class="d-flex justify-content-center align-items-center vh-100">
+    <div class="card text-bg-warning mb-3" style="max-width: 18rem;">
+        <div class="card-header">Delete Event</div>
+        <div class="card-body">
+            <h5 class="card-title">Are you sure you want to delete {{ event.name }}?</h5>
+            <p class="card-text">This can't be reversed.</p>
+            <div class="d-flex justify-content-evenly align-items-center">
+                <form method="POST" action="{{ url_for('admin_delete_event', id=event.id) }}">
+                    <button type="submit" class="btn btn-primary">Yes</button>
+                </form>
+                <a href="{{ url_for('admin_events') }}" class="btn btn-secondary">No</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends '_base.html' %}
+{% block body %}
+<div class="gutter-banner"></div>
+<div class="container-fluid">
+    <h1 class="my-4">Current Venues</h1>
+    <a class="btn btn-primary my-3" href="{{ url_for('admin_create_venue') }}">Create a venue</a>
+    <div class="row mb-3">
+        {% for venue in venues %}
+        <div class="col-md-3">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h2>{{ venue.name }}</h2>
+                    <p>{{ venue.location }}</p>
+                    <a class="btn btn-warning" href="{{url_for('admin_edit_venue', id=venue.id)}}">Edit</a>
+                    <a class="btn btn-danger" href="{{url_for('admin_delete_venue', id=venue.id)}}">Delete</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>TicketShow</title>
+        <link href="{{ url_for('static', filename='index.css') }}" rel="stylesheet" />
+    </head>
+    <body>
+        {% include '_nav.html' %}
+        <main>
+            {% if error %}
+                <div class="alert alert-danger alert-dismissible fade show" role="alert" style="position: fixed;z-index: 999; bottom: 0;margin: auto;left: 0;right: 0;">
+                    {{ error }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endif %}
+            {% block body %}
+            {% endblock %}
+        </main>
+        <footer>
+            <small>
+                Modern Application Development - 1 Project, made by Yuvraj Sharma (21f3000180)
+            </small>
+        </footer>
+        <script src="{{ url_for('static', filename='bootstrap/bootstrap.bundle.min.js') }}"></script>
+    </body>
+</html>

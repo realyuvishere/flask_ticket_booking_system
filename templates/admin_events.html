@@ -1,0 +1,23 @@
+{% extends '_base.html' %}
+{% block body %}
+<div class="gutter-banner"></div>
+<div class="container-fluid">
+    <h1 class="my-4">Current Events</h1>
+    <a class="btn btn-primary my-3" href="{{ url_for('admin_create_event') }}">Create a event</a>
+    <div class="row mb-3">
+        {% for event in events %}
+        <div class="col-md-3">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h2>{{ event.name }}</h2>
+                    <p>{{ event.description }}</p>
+                    <div class="mb-3"><b>Tags</b>: {% for tag in event.tags.split(',') %}<span class="badge text-bg-info">{{ tag }}</span> {% endfor %}</div>
+                    <a class="btn btn-warning" href="{{url_for('admin_edit_event', id=event.id)}}">Edit</a>
+                    <a class="btn btn-danger" href="{{url_for('admin_delete_event', id=event.id)}}">Delete</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

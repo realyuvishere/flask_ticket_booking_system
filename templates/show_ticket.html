@@ -1,0 +1,58 @@
+{% extends '_base.html' %}
+{% block body %}
+<div class="gutter-banner"></div>
+<div class="container-fluid py-5">
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <div class="card-header">
+                    <h1 class="text-center">Ticket details</h1>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <tr>
+                                <th>Code</th>
+                                <td>{{ ticket.code }}</td>
+                            </tr>
+                            <tr>
+                                <th>Booked on</th>
+                                <td>{{ showTime(ticket.bookingTime//10**9).strftime('%dth %B %Y (%H:%M IST)') }}</td>
+                            </tr>
+                            <tr>
+                                <th>Admits</th>
+                                <td>{{ ticket.admits }} person(s)</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <h3 class="text-center">Show details</h3>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <tr>
+                                <th>Name</th>
+                                <td>{{ event.name }}</td>
+                            </tr>
+                            <tr>
+                                <th>Description</th>
+                                <td>{{ event.description }}</td>
+                            </tr>
+                            <tr>
+                                <th>Tags</th>
+                                <td>{% for tag in event.tags.split(',') %}<span class="badge text-bg-info">{{ tag }}</span> {% endfor %}</td>
+                            </tr>
+                            <tr>
+                                <th>Venue name</th>
+                                <td>{{ venue.name }}</td>
+                            </tr>
+                            <tr>
+                                <th>Location</th>
+                                <td>{{ venue.location }}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

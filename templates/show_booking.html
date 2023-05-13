@@ -1,0 +1,32 @@
+{% extends '_base.html' %}
+{% block body %}
+<div class="gutter-banner"></div>
+<div class="container-fluid">
+    <h1>Show details</h1>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card my-3 mx-auto">
+                <div class="card-body">
+                    <h4>{{ event.name }}</h4>
+                    <div><b>Tags</b>: {% for tag in event.tags.split(',') %}<span class="badge text-bg-info">{{ tag }}</span> {% endfor %}</div>
+                    <div>{{ event.description }}</div>
+                    <h4>{{ venue.name }}</h4>
+                    <div><b>Located at</b> {{ venue.location }}</div>
+                    <div>{{ show.timing }} IST</div>
+                    <div>&#x20B9; {{ show.price }} / per head</div>
+                    <div>{{ venue.capacity - occupied_seats }} seats left</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <form action="{{ url_for('book_tickets', id=show.id) }}" method="post">
+                <div class="form-floating mb-3">
+                    <input type="number" class="form-control" id="seats" name="seats" placeholder="Number of seats">
+                    <label for="seats">Number of seats</label>
+                </div>
+                <button class="btn btn-outline-primary mx-auto d-block" type="submit">Book em</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

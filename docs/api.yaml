@@ -1,0 +1,546 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: Ticket Show
+  description: >-
+    This API allows users to give ratings to the available events as registered
+    on the app, along with fetching their average ratings. It allows users of
+    the API to perform CRUD operations on events, venues and shows.
+paths:
+  /event:
+    get:
+      summary: Get all events
+      responses:
+        '200':
+          description: Fetched all events
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Event'
+        '400':
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      tags:
+        - Events
+    post:
+      summary: Create a new event
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateEvent'
+      responses:
+        '200':
+          description: Created the event
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Event'
+        '400':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      tags:
+        - Events
+  /event/{id}:
+    get:
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            $ref: '#/components/schemas/Id'
+          description: The event ID
+      summary: Get one event
+      responses:
+        '200':
+          description: Fetched one particular event
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Event'
+        '400':
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      tags:
+        - Events
+    put:
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            $ref: '#/components/schemas/Id'
+          description: The event ID
+      summary: Edit an existing event
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateEvent'
+      responses:
+        '200':
+          description: Edited the event
+        '400':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      tags:
+        - Events
+    delete:
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            $ref: '#/components/schemas/Id'
+          description: The event ID
+      summary: Delete an existing event
+      responses:
+        '200':
+          description: Deleted the event
+        '400':
+          description: Unknown error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      tags:
+        - Events
+  /venue:
+    get:
+      summary: Get all venues
+      responses:
+        '200':
+          description: Fetched all venues
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Venue'
+        '400':
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      tags:
+        - Venues
+    post:
+      summary: Create a new venue
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateVenue'
+      responses:
+        '200':
+          description: Created the venue
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Venue'
+        '400':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      tags:
+        - Venues
+  /venue/{id}:
+    get:
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            $ref: '#/components/schemas/Id'
+          description: The venue ID
+      summary: Get one venue
+      responses:
+        '200':
+          description: Fetched one particular venue
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Venue'
+        '400':
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      tags:
+        - Venues
+    put:
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            $ref: '#/components/schemas/Id'
+          description: The venue ID
+      summary: Edit an existing venue
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateVenue'
+      responses:
+        '200':
+          description: Edited the venue
+        '400':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      tags:
+        - Venues
+    delete:
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            $ref: '#/components/schemas/Id'
+          description: The venue ID
+      summary: Delete an existing venue
+      responses:
+        '200':
+          description: Deleted the venue
+        '400':
+          description: Unknown error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      tags:
+        - Venues
+  /shows:
+    get:
+      summary: Get all shows
+      responses:
+        '200':
+          description: Fetched all shows
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Show'
+        '400':
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      tags:
+        - Shows
+    post:
+      summary: Create a new show
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateShow'
+      responses:
+        '200':
+          description: Created the show
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Show'
+        '400':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      tags:
+        - Shows
+  /shows/{id}:
+    get:
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            $ref: '#/components/schemas/Id'
+          description: The shows ID
+      summary: Get one show
+      responses:
+        '200':
+          description: Fetched one particular show
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Show'
+        '400':
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      tags:
+        - Shows
+    put:
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            $ref: '#/components/schemas/Id'
+          description: The show's ID
+      summary: Edit an existing show
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateShow'
+      responses:
+        '200':
+          description: Edited the show
+        '400':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      tags:
+        - Shows
+    delete:
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            $ref: '#/components/schemas/Id'
+          description: The shows ID
+      summary: Delete an existing show
+      responses:
+        '200':
+          description: Deleted the show
+        '400':
+          description: Unknown error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      tags:
+        - Shows
+  /rating/{event_id}:
+    get:
+      parameters:
+        - in: path
+          name: event_id
+          required: true
+          schema:
+            $ref: '#/components/schemas/Id'
+          description: The event's ID
+      summary: Get average rating of the given event
+      responses:
+        '200':
+          description: Fetched one particular event's average rating
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AvgRating'
+        '400':
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      tags:
+        - Rating
+    post:
+      parameters:
+        - in: path
+          name: event_id
+          required: true
+          schema:
+            $ref: '#/components/schemas/Id'
+          description: The event's ID
+      summary: Give rating to an event
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateRating'
+      responses:
+        '200':
+          description: Created the rating
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Rating'
+        '400':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      tags:
+        - Rating
+components:
+  schemas:
+    Id:
+      description: The unique identifier of any element in the database
+      type: integer
+      minimum: 1
+    Event:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/Id'
+        name:
+          type: string
+        description:
+          type: string
+        tags:
+          type: string
+    CreateEvent:
+      type: object
+      required:
+        - name
+        - description
+        - tags
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        tags:
+          type: string
+    Venue:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/Id'
+        name:
+          type: string
+        location:
+          type: string
+        capacity:
+          type: integer
+    CreateVenue:
+      type: object
+      required:
+        - name
+        - location
+        - capacity
+      properties:
+        name:
+          type: string
+        location:
+          type: string
+        capacity:
+          type: integer
+    AvgRating:
+      type: object
+      properties:
+        avg_rating:
+          type: float
+    Rating:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/Id'
+        event_id:
+          $ref: '#/components/schemas/Id'
+        stars:
+          type: integer
+        comment:
+          type: string
+    CreateRating:
+      type: object
+      required:
+        - event_id
+        - stars
+        - comment
+      properties:
+        event_id:
+          $ref: '#/components/schemas/Id'
+        stars:
+          type: integer
+        comment:
+          type: string
+    Show:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/Id'
+        event_id:
+          $ref: '#/components/schemas/Id'
+        venue_id:
+          $ref: '#/components/schemas/Id'
+        timing:
+          type: integer
+        price:
+          type: integer
+        isActive:
+          type: boolean
+          enum:
+            - 0
+            - 1
+    CreateShow:
+      type: object
+      required:
+        - event_id
+        - venue_id
+        - timing
+        - price
+        - isActive
+      properties:
+        event_id:
+          $ref: '#/components/schemas/Id'
+        venue_id:
+          $ref: '#/components/schemas/Id'
+        timing:
+          type: integer
+        price:
+          type: integer
+        isActive:
+          type: boolean
+          enum:
+            - 0
+            - 1
+    Error:
+      type: object
+      properties:
+        code:
+          description: The error status code
+          type: integer
+        message:
+          description: A human readable error message
+          type: string
+servers:
+  - url: http://localhost:5000/api/v1
+    variables: {}
+  - url: http://127.0.0.1:5000/api/v1
+    variables: {}
+tags:
+  - name: Events
+    description: 'CRUD operations for events '
+  - name: Venues
+    description: 'CRUD operations for venues '
+  - name: Shows
+    description: 'CRUD operations for shows '
+  - name: Rating
+    description: 'Create and view operations for ratings '

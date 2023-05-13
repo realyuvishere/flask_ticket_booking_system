@@ -1,0 +1,51 @@
+{% extends '_base.html' %}
+{% block body %}
+<div class="gutter-banner"></div>
+<div class="container-fluid">
+    <h1 class="my-4">Current Shows</h1>
+    <a class="btn btn-primary my-3" href="{{ url_for('admin_create_show') }}">Create a show</a>
+    <div class="row mb-3">
+        {% for show, event, venue in shows %}
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="text-center">{{ event.name }}</h2>
+                    <table class="my-3">
+                        <tr>
+                            <th>Description</th>
+                            <td>{{ event.description }}</td>
+                        </tr>
+                        <tr>
+                            <th>Tags</th>
+                            <td>{% for tag in event.tags.split(',') %}<span class="badge text-bg-info">{{ tag }}</span> {% endfor %}</td>
+                        </tr>
+                        <tr>
+                            <th>Location</th>
+                            <td>{{ venue.location }}</td>
+                        </tr>
+                        <tr>
+                            <th>Ticket price</th>
+                            <td>{{ show.price }}</td>
+                        </tr>
+                        <tr>
+                            <th>Show timing</th>
+                            <td>{{ show.timing }}</td>
+                        </tr>
+                        <tr>
+                            <th>Seating capacity</th>
+                            <td>{{ venue.capacity }}</td>
+                        </tr>
+                        <tr>
+                            <th>Available for booking</th>
+                            <td>{{ 'Yes' if (show.isActive==1) else 'No'}}</td>
+                        </tr>
+                    </table>
+                    <a class="btn btn-warning" href="{{url_for('admin_edit_show', id=show.id)}}">Edit</a>
+                    <a class="btn btn-danger" href="{{url_for('admin_delete_show', id=show.id)}}">Delete</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends '_base.html' %}
+
+{% block body %}
+<div class="gutter-banner"></div>
+<div class="container-fluid">
+    <h1 class="my-4">Welcome, admin</h1>
+    <p class="m-3">Please pick an action</p>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h2>Manage events</h2>
+                    <p>Manage a movie / performance in order to manage shows</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <a class="btn btn-outline-primary" href="{{ url_for('admin_create_event') }}">Add a new event</a>
+                        <a class="btn btn-outline-primary" href="{{ url_for('admin_events') }}">View events</a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h2>Manage Venues</h2>
+                    <p>Manage the venues available for shows</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <a class="btn btn-outline-primary" href="{{ url_for('admin_create_venue') }}">Add a new venue</a>
+                        <a class="btn btn-outline-primary" href="{{ url_for('admin_venues') }}">View venues</a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h2>Manage shows</h2>
+                    <p>Manage various screenings / performances on different venues</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <a class="btn btn-outline-primary" href="{{ url_for('admin_create_show') }}">Add a new show</a>
+                        <a class="btn btn-outline-primary" href="{{ url_for('admin_shows') }}">View shows</a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

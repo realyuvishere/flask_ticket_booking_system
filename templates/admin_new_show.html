@@ -1,0 +1,53 @@
+{% extends '_base.html' %}
+{% block body %}
+<div class="d-flex justify-content-center align-items-center vh-100 position-relative">
+    <div class="card">
+        <div class="card-body">
+            <form method="POST" action="{{ url_for('admin_create_show') }}">
+                <div class="form-floating mb-3">
+                    <select class="form-select" aria-label="Select event" id="event_id" name="event_id">
+                        <option selected disabled></option>
+                        {% for event in events %}
+                        <option value="{{ event.id }}">#{{ event.id }} - {{ event.name }} ({{ event.tags }})</option>
+                        {% endfor %}
+                    </select>
+                    <label for="event_id">Select event</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <select class="form-select" aria-label="Select venue" id="venue_id" name="venue_id">
+                        <option selected disabled></option>
+                        {% for venue in venues %}
+                        <option value="{{ venue.id }}">#{{ venue.id }} - {{ venue.name }} ({{ venue.location }}) [{{ venue.capacity }} seats]</option>
+                        {% endfor %}
+                    </select>
+                    <label for="venue_id">Select venue</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="number" class="form-control" id="price" name="price" placeholder="Price">
+                    <label for="price">Price</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="datetime-local" class="form-control" id="timing" name="timing" placeholder="Timing">
+                    <label for="timing">Timing</label>
+                </div>
+                <div class="mb-3">
+                    <label>Available</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="isActive" id="isActive_yes" value="yes" checked>
+                        <label class="form-check-label" for="isActive_yes">
+                            Yes
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="isActive" id="isActive_no" value="no">
+                        <label class="form-check-label" for="isActive_no">
+                            No
+                        </label>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-outline-primary">Create show</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

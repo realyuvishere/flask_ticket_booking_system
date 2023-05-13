@@ -1,0 +1,13 @@
+{% extends '_base.html' %}
+{% block body %}
+<div class="gutter-banner"></div>
+<div class="d-flex justify-content-center align-items-center vh-100">
+    <div class="card text-bg-success text-center">
+        <div class="card-body">
+            <h1>Yay!</h1>
+            <p>Your tickets have been booked.</p>
+            <a class="btn btn-outline-light" href="{{ url_for('show_ticket', code=code) }}">Show details</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

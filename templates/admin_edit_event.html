@@ -1,0 +1,24 @@
+{% extends '_base.html' %}
+{% block body %}
+<div class="d-flex justify-content-center align-items-center vh-100">
+    <div class="card text-center">
+        <div class="card-body">
+            <form method="POST" action="{{ url_for('admin_edit_event', id=event.id) }}">
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Name" value="{{ event.name }}">
+                    <label for="name">Name</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="description" name="description" placeholder="Description" value="{{ event.description }}">
+                    <label for="description">Description</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="tags" name="tags" placeholder="Tags" value="{{ event.tags }}">
+                    <label for="tags">Tags</label>
+                </div>
+                <button type="submit" class="btn btn-outline-primary">Edit event</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

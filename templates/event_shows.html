@@ -1,0 +1,39 @@
+{% extends '_base.html' %}
+{% block body %}
+<div class="gutter-banner"></div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-5">
+            <h2 class="mx-3 my-5">Showing you shows available for:</h2>
+            <div class="card my-5 w-75 mx-auto">
+                <div class="card-body">
+                    <h4>{{ event.name }}</h4>
+                    <div>{{ event.description }}</div>
+                    <div class="mb-3"><b>Tags</b>: {% for tag in event.tags.split(',') %}<span class="badge text-bg-info">{{ tag }}</span> {% endfor %}</div>
+                    <div class="mb-3">Rating: {{ event.avg_rating }}</div>
+                    <a class="btn btn-outline-secondary" href="{{url_for('event_rating', id=event.id)}}">Give review</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-7 pb-4">
+            <div class="row">
+                {% for show, event in data %}
+                <div class="col-md-6 mt-4">
+                    <div class="card text-center">
+                        <div class="card-body">
+                            <h1>{{ event.name }}</h1>
+                            <p>{{ event.location }}</p>
+                            <p>{{ event.capacity }} seats</p>
+                            <p>{{ show.timing }}</p>
+                            <p>&#x20B9; {{ show.price }}</p>
+                            <!-- <p>{{ show.price }}</p> -->
+                            <a href="{{ url_for('show_details', id=show.id) }}">Show details</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
